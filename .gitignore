@@ -60,7 +60,7 @@ section2:NewSlider("jump power", "change plr jump power", 1000, 50, function(s) 
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
 end)
 
-Section2:NewButton("heal yourself", "gives you max health", function() -- heals
+section2:NewButton("heal yourself", "gives you max health", function() -- heals
     game.Players.LocalPlayer.Character.Humanoid.Health = 10000000000000000000 -----------------this where i left off at
 end)
 
