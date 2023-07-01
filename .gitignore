@@ -3,10 +3,11 @@
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
-local Window = Library.CreateLib("uncle aidens hub", "GrapeTheme")
+local Window = Library.CreateLib("uncle aidens hub", "DarkTheme")
 
 local Tab1 = Window:NewTab("general")
 local Tab2 = Window:NewTab("player")
+local Tab3 = Window:NewTab("aimbot")
 
 
 local Section1 = Tab1:NewSection("random")
@@ -15,30 +16,32 @@ local Section1a = Tab1:NewSection("open/close")
 local section2 = Tab2:NewSection("player")
 local section2a = Tab2:NewSection("teleport")
 
+local section3 = Tab3:NewSection("aimbot")
+
 
 ----------tab 1------
 
 Section1:NewButton("tp tool", "its in the name idiot", function() ---tp tool button 
 
-    local mouse = game.Players.LocalPlayer:GetMouse()
-    local tool = Instance.new("Tool")
-    tool.RequiresHandle = false
-    tool.Name = "tp tool"
-    tool.Activated:connect(function()
-        local pos = mouse.Hit+Vector3.new(0,2.5,0)
-        pos = CFrame.new(pos.X,pos.Y,pos.Z)
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-    end)
-    tool.Parent = game.Players.LocalPlayer.Backpack
+	local mouse = game.Players.LocalPlayer:GetMouse()
+	local tool = Instance.new("Tool")
+	tool.RequiresHandle = false
+	tool.Name = "tp tool"
+	tool.Activated:connect(function()
+		local pos = mouse.Hit+Vector3.new(0,2.5,0)
+		pos = CFrame.new(pos.X,pos.Y,pos.Z)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+	end)
+	tool.Parent = game.Players.LocalPlayer.Backpack
 
 end)
 
 Section1:NewButton("inf yield", "inf yield admin", function() -- inf yield admin
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end)
 
 Section1:NewButton("remote spy", "spy remote?", function() -- inf yield admin
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/aiden-wc/spy-script/main/spyscript"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/aiden-wc/spy-script/main/spyscript"))()
 end)
 
 ---
@@ -53,37 +56,46 @@ end)
 
 
 section2:NewSlider("speed", "change plr speed", 500, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
 end)
 
 section2:NewSlider("jump power", "change plr jump power", 1000, 50, function(s) -- 500 (MaxValue) | 0 (MinValue)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
 end)
 
 section2:NewButton("heal yourself", "gives you max health", function() -- heals
-    game.Players.LocalPlayer.Character.Humanoid.Health = 100
+	game.Players.LocalPlayer.Character.Humanoid.Health = 100
+end)
+
+
+
+section2:NewDropdown("Team Change", "change yout team", {game.Teams.Name}, function(currentOption)
+	game.Players.LocalPlayer.Team = currentOption.Name
 end)
 
 --
 
 section2a:NewTextBox("plr name:", "tp to a player", function(txt)
 	local function teleportToPlayer(player)
-        local character = player.Character
-        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = humanoidRootPart.CFrame
-    end
+		local character = player.Character
+		local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = humanoidRootPart.CFrame
+	end
 
-    local function teleportToPlayerByName(playerName)
-        local player = game.Players:FindFirstChild(playerName)
-        if player then
-            teleportToPlayer(player)
-        end
-    end
+	local function teleportToPlayerByName(playerName)
+		local player = game.Players:FindFirstChild(playerName)
+		if player then
+			teleportToPlayer(player)
+		end
+	end
 
-    local playerName = txt
-    teleportToPlayerByName(playerName)
+	local playerName = txt
+	teleportToPlayerByName(playerName)
 
 end)
 
 
 -- end tab 2
+
+---- tab 3
+
