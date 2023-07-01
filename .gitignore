@@ -43,7 +43,7 @@ end)
 
 ---
 
-Section1a:NewKeybind("toggle gui ", "keycode = F5", Enum.KeyCode.F5, function()
+Section1a:NewKeybind("toggle gui ", "keycode = LeftAlt", Enum.KeyCode.LeftAlt, function()
 	Library:ToggleUI()
 end)
 
