@@ -60,6 +60,10 @@ section2:NewSlider("jump power", "change plr jump power", 1000, 50, function(s) 
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
 end)
 
+section2:NewSlider("health", "change plr health", 100, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.Health = s
+end)
+
 --
 
 section2a:NewTextBox("plr name:", "tp to a player", function(txt)
