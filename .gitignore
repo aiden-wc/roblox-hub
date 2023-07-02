@@ -54,42 +54,12 @@ function esp()
 
 
 
------ go away
+----- end esp function
 
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 
 local Window = Library.CreateLib("uncle aidens hub", "DarkTheme")
-
-local LoginTab = Window:NewTab("Login")
-local loginUser = LoginTab:NewSection("Login")
-
-
-
-
-
-
---- login page ---
-
-local whitelisted = {
-    "foxboy0529",
-    "A_Yolk"
-}
-
-loginUser:NewTextBox("Key:", "enter the key", function(txt)
-	for i, v in pairs(whitelisted) do
-        local players = game:GetService("Players")
-        if players.Name == v then
-            openUi()
-        elseif players.Name ~= v then
-            players:Kick("not whitelisted nerd!")
-        end
-    end
-end)
-
-
--- varibles ---
-function openUi()
 
 local Tab1 = Window:NewTab("general")
 local Tab2 = Window:NewTab("player")
@@ -202,5 +172,3 @@ section3:NewToggle("esp", "higlights all the players in the game", function(stat
         end
     end
 end)
-
-end
