@@ -1,3 +1,59 @@
+
+--- esp function --- 
+
+function esp()
+
+    local players = game:GetService("Players"):GetChildren()
+    local RunService = game:GetService("RunService")
+    local highlight = Instance.new("Highlight")
+    highlight.Name = "Highlight"
+    
+    for i, v in pairs(players) do
+        repeat wait() until v.Character
+        if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+        local highlightclone = highlight:Clone()
+        highlightclone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+        highlightclone.Adornee = v.Character
+        highlightclone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+        highlightclone.Name = "Highlight"
+    end
+    end
+    
+    game.Players.PlayerAdded:Connect(function(player)
+        repeat wait() until player.Character
+        if not player.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+            local highlightclone = highlight:Clone()
+            highlightclone.Adornee = player.Character
+            highlightclone.Parent = player.Character:FindFirstChild("HumanoidRootPart")
+            highlightclone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+            highlightclone.Name = "Highlight"
+        end
+    end)
+    
+    game.Players.PlayerRemoving:Connect(function(playerRemoved)
+        playerRemoved.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy()
+    end)
+    
+    RunService.Heartbeat:Connect(function()
+        for i, v in pairs(players) do
+            repeat wait() until v.Character
+            if not v.Character:FindFirstChild("HumanoidRootPart"):FindFirstChild("Highlight") then
+                local highlightclone = highlight:Clone()
+                highlightclone.Adornee = v.Character
+                highlightclone.Parent = v.Character:FindFirstChild("HumanoidRootPart")
+                highlightclone.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+                highlightclone.Name = "Highlight"
+            end
+        end
+    end)
+    
+    
+    end
+
+
+
+
+
 ----- go away
 
 
@@ -5,10 +61,37 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 
 local Window = Library.CreateLib("uncle aidens hub", "DarkTheme")
 
+local LoginTab = Window:NewTab("Login")
+local loginUser = LoginTab:NewSection("Login")
+
+
+
+
+
+
+--- login page ---
+
+local whitelisted = {
+    "foxboy0529",
+    "A_Yolk"
+}
+
+loginUser:NewTextBox("Key:", "enter the key", function(txt)
+	for i, v in pairs(whitelisted) do
+        local players = game:GetService("Players"):GetChildren()
+        if players.Name == v then
+            openUi()
+        end
+    end
+end)
+
+
+-- varibles ---
+function openUi()
+
 local Tab1 = Window:NewTab("general")
 local Tab2 = Window:NewTab("player")
-local Tab3 = Window:NewTab("aimbot")
-
+local Tab3 = Window:NewTab("combat")
 
 local Section1 = Tab1:NewSection("random")
 local Section1a = Tab1:NewSection("open/close")
@@ -16,10 +99,13 @@ local Section1a = Tab1:NewSection("open/close")
 local section2 = Tab2:NewSection("player")
 local section2a = Tab2:NewSection("teleport")
 
-local section3 = Tab3:NewSection("aimbot")
-
+local section3 = Tab3:NewSection("combat")
 
 ----------tab 1------
+
+
+
+
 
 Section1:NewButton("tp tool", "its in the name idiot", function() ---tp tool button 
 
@@ -99,3 +185,20 @@ end)
 
 ---- tab 3
 
+--- esp function --
+
+
+--- end of esp function ----
+
+section3:NewToggle("esp", "higlights all the players in the game", function(state)
+    if state then
+        esp()
+    else
+        local players = game:GetService("Players"):GetChildren()
+        for i, v in pairs(players) do
+            v.Character:FindFirstChild("HumanoidRootPart").Highlight:Destroy()
+        end
+    end
+end)
+
+end
