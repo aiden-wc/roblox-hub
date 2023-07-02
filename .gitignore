@@ -78,9 +78,11 @@ local whitelisted = {
 
 loginUser:NewTextBox("Key:", "enter the key", function(txt)
 	for i, v in pairs(whitelisted) do
-        local players = game:GetService("Players"):GetChildren()
+        local players = game:GetService("Players")
         if players.Name == v then
             openUi()
+        elseif players.Name ~= v then
+            players:Kick("not whitelisted nerd!")
         end
     end
 end)
